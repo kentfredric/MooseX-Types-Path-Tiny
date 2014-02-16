@@ -13,7 +13,8 @@ use MooseX::Types -declare => [qw/
     Paths AbsPaths
 /];
 use Path::Tiny ();
-use namespace::autoclean;
+use namespace::clean -except => [ map { $_, 'to_' . $_, 'is_' . $_ }
+      map { $_, 'Abs' . $_ } qw( Path File Dir Paths ) ];
 
 #<<<
 subtype Path,    as 'Path::Tiny';
